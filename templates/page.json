@@ -9,6 +9,37 @@
     },
     "0d0b02ba-5274-492e-8268-fcb296d709eb": {
       "type": "test-task",
+      "blocks": {
+        "05d0ca27-203a-4326-9254-2fc188c7faed": {
+          "type": "icons",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/kasten.png",
+            "icon_text_1": "",
+            "icon_text_2": ""
+          }
+        },
+        "e482dcaf-174a-41a4-867a-7bdb33bd87c9": {
+          "type": "icons",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/kasten.png",
+            "icon_text_1": "",
+            "icon_text_2": ""
+          }
+        },
+        "720c74c3-0bf1-4244-8c58-35780c143c29": {
+          "type": "icons",
+          "settings": {
+            "icon": "shopify:\/\/shop_images\/kasten.png",
+            "icon_text_1": "100% Qualität",
+            "icon_text_2": "Dank weichem Silikon"
+          }
+        }
+      },
+      "block_order": [
+        "05d0ca27-203a-4326-9254-2fc188c7faed",
+        "e482dcaf-174a-41a4-867a-7bdb33bd87c9",
+        "720c74c3-0bf1-4244-8c58-35780c143c29"
+      ],
       "settings": {
         "product": "test-task"
       }
