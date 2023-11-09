@@ -1,11 +1,5 @@
 {
   "sections": {
-    "ea181e53-e37e-4f70-aef0-1fc4e1c1d8ad": {
-      "type": "test-task",
-      "settings": {
-        "product": "test-task"
-      }
-    },
     "90358398-389d-4301-9524-d75796db7ceb": {
       "type": "rich-text",
       "blocks": {
@@ -802,7 +796,6 @@
     }
   },
   "order": [
-    "ea181e53-e37e-4f70-aef0-1fc4e1c1d8ad",
     "90358398-389d-4301-9524-d75796db7ceb",
     "888769ee-c698-4d35-85d9-bf8967bcf2ff",
     "c95e4295-41b9-42e6-ace3-a8207323c444",
