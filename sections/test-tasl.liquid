@@ -1,0 +1,132 @@
+
+<style>
+.outer-container {
+  padding: 20px;
+  max-width: 650px;
+  overflow: hidden;
+}
+
+.gallery-thumbs {
+  float: left;
+  width: calc(16% - 20px);
+  height: 280px;
+  margin-right: 20px;
+}
+
+.gallery-thumbs .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  cursor: pointer;
+}
+
+.gallery-thumbs .swiper-slide-active {
+  border: 1px solid grey;
+}
+
+.gallery-thumbs .swiper-slide:hover {
+  border: 1px solid grey;
+}
+
+.gallery-top {
+  float: left;
+  width: 84%;
+  height: 280px;
+}
+
+.gallery-top .swiper-slide {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  border: 1px solid grey;
+}
+
+/* CUSTOM */
+
+.swiper-wrapper {
+  overflow: hidden;
+}
+.gallery-top {
+  width: 50%;
+}
+</style>
+
+
+
+
+
+<!-- Swiper -->
+{% assign product = section.settings.product %}
+<div class="outer-container">
+  <div class="swiper-container gallery-thumbs">
+    <div class="swiper-wrapper">
+      {% for image in product.images %}
+      <div class="swiper-slide">
+        <img src="{{image | img_url: 'x100' | crop: 'center' }}" alt="" height="100">
+      </div>
+    {% endfor %}
+    </div>
+  </div>
+  <div class="swiper-container gallery-top">
+    <div class="swiper-wrapper">
+      {% for image in product.images %}
+      <div class="swiper-slide">
+        <img src="{{image | img_url: 'x100' | crop: 'center' }}" alt="" height="100">
+      </div>
+    {% endfor %}
+    </div>
+    <!-- Add Arrows -->
+    <div class="swiper-button-next"> </div>
+    <div class="swiper-button-prev"> </div>
+  </div>
+</div>
+
+
+
+
+<!-- Swiper JS -->
+
+
+<!-- Initialize Swiper -->
+<script>
+  var galleryTop = new Swiper('.gallery-top', {
+        slidesPerView: 1,  
+        
+        loopedSlides: 50,
+        navigation: {
+          nextEl: '.swiper-button-next',
+          prevEl: '.swiper-button-prev',
+        },
+      });
+      var galleryThumbs = new Swiper('.gallery-thumbs', {
+        direction: 'vertical',
+        slidesPerView: 4,
+        loopedSlides: 50
+        
+      });
+      galleryTop.controller.control = galleryThumbs;
+      galleryThumbs.controller.control = galleryTop;
+</script>
+
+{% schema %}
+{
+  "name": "Test Task 22",
+  "class": "section section-featured-product",
+  "blocks": [
+  ],
+  "settings": [
+    {
+      "type": "product",
+      "id": "product",
+      "label": "t:sections.featured-product.settings.product.label"
+    }
+  ],
+  "presets": [
+    {
+      "name": "Test Task 22"
+    }
+  ]
+}
+{% endschema %}

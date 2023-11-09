@@ -1,0 +1,41 @@
+<style>
+#shopify-section-{{section.id}} .wrapper {
+    display: flex;
+    justify-content: space-evenly;
+}
+#shopify-section-{{section.id}} .h5 {
+    font-family: {{settings.type_announcement_font}};
+}
+</style>
+<div class="wrapper">
+    {% for block in section.blocks %}
+        <div class="h5">
+            {{block.settings.text}}
+        </div>
+    {% endfor %}
+</div>
+
+
+{% schema %}
+{
+  "name": "Announcement Bar Row",
+  "class": "section-header",
+  "max_blocks": 4,
+  "blocks": [{
+  "type": "text",
+  "name": "t:sections.featured-product.blocks.text.name",
+  "settings": [
+    {
+        "type": "text",
+        "label": "Titel",
+        "default": "Text",
+        "id": "text"
+    }]}
+  ],
+  "presets": [
+      {
+          "name":"Announcement Bar Row"
+      }
+  ]
+}
+{% endschema %}
