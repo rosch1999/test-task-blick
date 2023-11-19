@@ -274,7 +274,7 @@
     <div class="info-box">
       <p class="product_title">{{ product.title }}</p>
       <p class="sub_title">{{ product.metafields.product_subtitle.text }}</p>
-      <span class="old-price">{{ product.price | money_without_currency }} {{ cart.currency.symbol }}</span><span class="new-price-wrapper"><span class="new-price">{{ product.compare_at_price | money_without_currency }} {{ cart.currency.symbol }} </span><span class="mws">inkl.MwSt.</span></span>
+      <span class="old-price">{{ product.price | money_without_currency }}{{ cart.currency.symbol }}</span><span class="new-price-wrapper"><span class="new-price">{{ product.compare_at_price | money_without_currency }}{{ cart.currency.symbol }} </span><span class="mws">inkl.MwSt.</span></span>
       <div class="availability"><p div class="dot"> </p><p>{{ product.metafields.delivery_time.duration }}</p></div>
       <product-info
       id="ProductInfo-{{ section.id }}"
