@@ -443,7 +443,11 @@ table:not([class]) th {
     display: none !important;
   }
 }
-
+@media screen and (max-width: 989px) {
+  .medium-down-hide {
+    display: none !important;
+  }
+}
 @media screen and (min-width: 750px) and (max-width: 989px) {
   .medium-hide {
     display: none !important;

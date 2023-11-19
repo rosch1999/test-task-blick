@@ -3,19 +3,15 @@
       position: relative;
       height: 100%;
       max-width: 500px;
-      margin: 0 20px 0 auto;
+      /*margin: 0 20px 0 auto;*/
+      margin: 0 21px 0 auto;
       font-family: Helvetica Neue, Helvetica, Arial, sans-serif;
       font-size: 14px;
       color: #000;
       padding: 0;
       display: flex;
     }
-
-    .swiper {
-      width: 100%;
-      height: 100%;
-    }
-
+ 
     .swiper-slide {
       text-align: center;
       font-size: 18px;
@@ -23,6 +19,7 @@
       display: flex;
       justify-content: center;
       align-items: center;
+      width: 90%;
     }
 
     .swiper-slide img {
@@ -30,11 +27,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      border-radius: 7px;
-    }
-
-    .swiper-pagination {
-      bottom: -6px;
+      border-radius: 4px;
     }
 
     .swiper {
@@ -57,6 +50,7 @@
     .mySwiper {
       height: 20%;
       box-sizing: border-box;
+      margin-top: 8px;
     }
 
     .mySwiper .swiper-slide {
@@ -83,6 +77,9 @@
     .product_title {
       font-size: 20px;
       font-weight: bold;
+      margin-top: 1.3rem;
+      margin-bottom: 0.5rem;
+      color: #000;
     }
    
     .old-price {
@@ -102,9 +99,11 @@
     .sub_title,
     .availability {
       font-size: 13px;
+      margin-top: 0.7rem;
+      color: #000;
     }
     .availability {
-      color: #71dc71;
+      color: #24A526;
       display: flex;
       align-items: center;
     }
@@ -118,8 +117,9 @@
       align-items: center;
     }
     .info-box {
-      box-shadow: 0px 1px 17px 1px #d7d7d7;
+      box-shadow: 0px 0px 16px 5px #ebebeb;
       border-radius: 6px;
+      border: 1px solid #D5D5D5;
       padding: 0 15px 15px 15px;
       width: 400px;
     }
@@ -152,8 +152,10 @@
     }
     .text-with-icon {
       display: flex;
-      justify-content: center;
+      justify-content: space-around;
       font-size: 15px;
+      margin: 0 auto;
+      max-width: 1000px;
     }
     .flex {
       display: flex;
@@ -168,16 +170,27 @@
       font-weight: bold;
     }
     .dot {
-      background: #71dc71;
+      background: #24A526;
       width: 10px;
       height: 10px;
       display: block;
       border-radius: 5px;
       margin-right: 5px;
     }
-    @media only screen and (max-width: 768px) {
-      .text-with-icon {
-        flex-direction: column;
+    .swiper-pagination-bullet-active {
+      background: #949494;
+    }
+    .disabled_swiper_button {
+        opacity: 0.5;
+        cursor: auto;
+        pointer-events: none;
+    }
+    @media only screen and (max-width: 989px) {
+      .swiper-pagination {
+        position: relative; 
+      }
+      .swiper-slide img {
+        margin-bottom: 17px;
       }
       .icon-blocks {
         justify-content: center;
@@ -186,18 +199,33 @@
       .mobile-flex {
         flex-direction: column;
       }
-      .info-box {
-        width: auto;
-      }
+      
       .product-information {
-        margin: 0 auto;
+        margin: 20px auto;
       }
       .mySwiper {
         display: none;
       }
+      .section-container {
+        overflow: hidden;
+      }
+      .swiper {
+        overflow: visible;
+      }
+      .mySwiper2 {
+        height: 80%;
+        width: 90%;
+      }
       .outer-wrapper {
         margin: 0;
-      
+      }
+    }
+    @media only screen and (max-width: 660px) {
+      .text-with-icon {
+        flex-direction: column;
+      }
+      .info-box {
+        width: auto;
       }
     }
   </style>
@@ -233,19 +261,18 @@
           </div>
         {% endfor %}
       </div>
-      <div class="swiper-button-next small-hide"> </div>
-      <div class="swiper-button-prev small-hide"> </div>
-      
+      <div class="swiper-button-next medium-down-hide"> </div>
+      <div class="swiper-button-prev medium-down-hide"> </div>
+     
     </div>
-    <div class="swiper-pagination medium-hide"></div>
   </div>
-
+  <div class="swiper-pagination medium-large-hide"></div>
 
   <div class="product-information">
     <div class="info-box">
       <p class="product_title">{{ product.title }}</p>
       <p class="sub_title">{{ product.metafields.product_subtitle.text }}</p>
-      <span class="old-price">{{ product.price | money }}</span><span class="new-price-wrapper"><span class="new-price">{{ product.compare_at_price | money }} </span><span class="mws">inkl.MwSt.</span></span>
+      <span class="old-price">{{ product.price | money_without_currency }}{{cart.currency.symbol }}</span><span class="new-price-wrapper"><span class="new-price">{{ product.compare_at_price | money_without_currency }}{{ cart.currency.symbol }} </span><span class="mws">inkl.MwSt.</span></span>
       <div class="availability"><p div class="dot"> </p><p>{{ product.metafields.delivery_time.duration }}</p></div>
       <product-info
       id="ProductInfo-{{ section.id }}"
@@ -288,28 +315,30 @@
     var swiper = new Swiper(".mySwiper", {
       spaceBetween: 10,
       slidesPerView: 4,
-      loop: true,
       watchSlidesProgress: true
     });
     var swiper2 = new Swiper(".mySwiper2", {
-      spaceBetween: 10,
-      loop: true,
       slidesPerView: 1,
+      watchSlidesProgress: true,
+      spaceBetween: 5,
+      centeredSlides: true,
       breakpoints: {
-        640: {
+        989: {
           navigation: {
-        nextEl: ".swiper-button-next",
-        prevEl: ".swiper-button-prev"
-      }
-        }},
-      
+            nextEl: ".swiper-button-next",
+            prevEl: ".swiper-button-prev"
+          }
+        }
+      },
       pagination: {
             el: ".swiper-pagination",
             clickable: true
       },
       thumbs: {
         swiper: swiper
-      }
+      },
+
+      disabledClass: "disabled_swiper_button"
     });
   </script>
 
